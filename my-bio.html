@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biography with Digital Clock</title>
+
+    <!-- اضافه کردن فونت‌های جذاب از Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lobster&display=swap" rel="stylesheet">
+
+    <style>
+        /* اعمال استایل عمومی */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow-x: hidden;
+            background-color: #121212;
+        }
+
+        /* پس‌زمینه بلور شده */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://s6.uupload.ir/files/m_c7mw.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px); /* بلور کردن پس‌زمینه */
+            z-index: -1;
+        }
+
+        /* ساعت دیجیتال */
+        .digital-clock {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Digital-7', sans-serif;
+            color: #00FF00;  /* رنگ سبز روشن برای ساعت */
+            font-size: 40px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* سایه برای جذابیت بیشتر */
+            background-color: rgba(0, 0, 0, 0.6); /* پس‌زمینه نیمه‌شفاف */
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 255, 0, 0.4); /* سایه سبز رنگ */
+        }
+
+        /* کادر نمایش اطلاعات */
+        .bio-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .bio-item {
+            margin: 15px 0;
+        }
+
+        .bio-item span {
+            margin-left: 10px;
+        }
+
+        .emoji {
+            font-size: 30px;
+        }
+
+        /* استایل عنوان */
+        h1 {
+            color: #ffdd57;
+            font-family: 'Lobster', cursive;
+            font-size: 40px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        /* استایل متن‌ها */
+        .bio-item {
+            color: #f0f0f0;
+            font-size: 18px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* استایل لینک‌ها */
+        a {
+            color: #ff69b4;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            margin-top: 8px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        a:hover {
+            background-color: rgba(255, 105, 180, 0.5);
+            color: white;
+            text-decoration: underline;
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        a:focus {
+            color: #ffdd57;
+            background-color: rgba(255, 105, 180, 0.3);
+        }
+
+        /* تغییرات واکنش‌گرا برای موبایل */
+        @media (max-width: 768px) {
+            .bio-section {
+                width: 90%;
+                padding: 20px;
+            }
+            .bio-item {
+                font-size: 16px;
+            }
+            .emoji {
+                font-size: 24px;
+            }
+            a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bio-item {
+                font-size: 14px;
+            }
+            .emoji {
+                font-size: 22px;
+            }
+            a {
+                font-size: 14px;
+            }
+        }
+
+        /* انیمیشن برای ورود اجزا */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* فونت دیجیتال */
+        @font-face {
+            font-family: 'Digital-7';
+            src: url('https://www.dafontfree.io/digital-7-font/download/10e0e497c99e8e01625e8a4f62247c3c');
+        }
+    </style>
+</head>
+<body>
+    <!-- پس‌زمینه بلور شده -->
+    <div class="background"></div>
+
+    <!-- ساعت دیجیتال -->
+    <div class="digital-clock" id="digital-clock">
+        <!-- ساعت و دقیقه به‌روزرسانی شده در اینجا نمایش داده می‌شود -->
+    </div>
+
+    <!-- کادر نمایش اطلاعات -->
+    <div class="bio-section">
+        <h1>Welcome In Biography</h1>
+        <div class="bio-item">
+            <span class="emoji">🌍</span> Mahdi _ Isfahan _ 1375 / 10 / 04
+        </div>
+        <div class="bio-item">
+            <span class="emoji">📱</span> Phone Nm: 09012252873
+        </div>
+        <div class="bio-item">
+            <span class="emoji">💬</span> <a href="https://wa.me/qr/U7F26VXO3DUCF1">What's up</a>
+        </div>
+        <div class="bio-item">
+            <span class="emoji">📩</span> <a href="https://t.me/Yvr_020">Talgram ID</a>
+        </div>
+        <div class="bio-item">
+            <span class="emoji">📸</span> <a href="https://www.instagram.com/yvr_020?igsh=aWwzYnlrd2U1a3d2">Instagram page</a>
+        </div>
+    </div>
+
+    <script>
+        // تابع برای بروزرسانی ساعت دیجیتال
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = ${hours}:${minutes}:${seconds};
+
+            // نمایش ساعت دیجیتال
+            document.getElementById("digital-clock").textContent = timeString;
+        }
+
+        // بروزرسانی ساعت هر ثانیه
+        setInterval(updateClock, 1000);
+        updateClock();  // فراخوانی اولیه برای نمایش ساعت بلافاصله پس از بارگذاری
+    </script>
+</body>
+</html>
